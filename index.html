@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App by Kory</title>
+<script defer src="main.js"></script></head>
+<body>
+    <form>
+        <div class="unitDiv">
+            <label for="celsius">°C/km</label>
+            <input type="radio" id="celsius" class="unit-radio" name="unit" value="celsius" checked>
+
+            <label for="fahrenheit">°F/mi</label>
+            <input type="radio" id="fahrenheit" class="unit-radio" name="unit" value="fahrenheit">
+        </div>
+        <div class="location-input">
+            <input type="text" id="location-input" name="location" placeholder="Location">
+        </div>
+        <button type="button" id="search-btn">search</button>
+    </form>
+    <div class="display">
+        <div class="temp-container">
+            <div class="temperature"></div>
+            <p class="description"></p>
+        </div>
+        <div class="loc-container">
+            <div class="location"></div>
+            <p class="minmax"></p>
+        </div>
+        <div class="conditions">
+            <div class="feeling-container">
+                <p class="feeling-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>thermometer-lines</title><path d="M17 3H21V5H17V3M17 7H21V9H17V7M17 11H21V13H17.75L17 12.1V11M21 15V17H19C19 16.31 18.9 15.63 18.71 15H21M7 3V5H3V3H7M7 7V9H3V7H7M7 11V12.1L6.25 13H3V11H7M3 15H5.29C5.1 15.63 5 16.31 5 17H3V15M15 13V5C15 3.34 13.66 2 12 2S9 3.34 9 5V13C6.79 14.66 6.34 17.79 8 20S12.79 22.66 15 21 17.66 16.21 16 14C15.72 13.62 15.38 13.28 15 13M12 4C12.55 4 13 4.45 13 5V8H11V5C11 4.45 11.45 4 12 4Z" /></svg>
+                    Feeling</p>
+                <div class="feeling"></div>
+            </div>
+            <div class="humidity-container">
+                <p class="humidity-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>water-percent</title><path d="M12,3.25C12,3.25 6,10 6,14C6,17.32 8.69,20 12,20A6,6 0 0,0 18,14C18,10 12,3.25 12,3.25M14.47,9.97L15.53,11.03L9.53,17.03L8.47,15.97M9.75,10A1.25,1.25 0 0,1 11,11.25A1.25,1.25 0 0,1 9.75,12.5A1.25,1.25 0 0,1 8.5,11.25A1.25,1.25 0 0,1 9.75,10M14.25,14.5A1.25,1.25 0 0,1 15.5,15.75A1.25,1.25 0 0,1 14.25,17A1.25,1.25 0 0,1 13,15.75A1.25,1.25 0 0,1 14.25,14.5Z" /></svg>
+                    Humidity</p>
+                <div class="humidity"></div>
+            </div>
+            <div class="wind-container">
+                <p class="wind-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>weather-windy</title><path d="M4,10A1,1 0 0,1 3,9A1,1 0 0,1 4,8H12A2,2 0 0,0 14,6A2,2 0 0,0 12,4C11.45,4 10.95,4.22 10.59,4.59C10.2,5 9.56,5 9.17,4.59C8.78,4.2 8.78,3.56 9.17,3.17C9.9,2.45 10.9,2 12,2A4,4 0 0,1 16,6A4,4 0 0,1 12,10H4M19,12A1,1 0 0,0 20,11A1,1 0 0,0 19,10C18.72,10 18.47,10.11 18.29,10.29C17.9,10.68 17.27,10.68 16.88,10.29C16.5,9.9 16.5,9.27 16.88,8.88C17.42,8.34 18.17,8 19,8A3,3 0 0,1 22,11A3,3 0 0,1 19,14H5A1,1 0 0,1 4,13A1,1 0 0,1 5,12H19M18,18H4A1,1 0 0,1 3,17A1,1 0 0,1 4,16H18A3,3 0 0,1 21,19A3,3 0 0,1 18,22C17.17,22 16.42,21.66 15.88,21.12C15.5,20.73 15.5,20.1 15.88,19.71C16.27,19.32 16.9,19.32 17.29,19.71C17.47,19.89 17.72,20 18,20A1,1 0 0,0 19,19A1,1 0 0,0 18,18Z" /></svg>
+                    Wind speed</p>
+                <div class="wind"></div>
+            </div>
+            <div class="visibility-container">
+                <p class="visibility-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>eye-outline</title><path d="M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9M12,4.5C17,4.5 21.27,7.61 23,12C21.27,16.39 17,19.5 12,19.5C7,19.5 2.73,16.39 1,12C2.73,7.61 7,4.5 12,4.5M3.18,12C4.83,15.36 8.24,17.5 12,17.5C15.76,17.5 19.17,15.36 20.82,12C19.17,8.64 15.76,6.5 12,6.5C8.24,6.5 4.83,8.64 3.18,12Z" /></svg>
+                    Visibility</p>
+                <div class="visibility"></div>
+            </div>
+        </div>
+
+        <div class="week">
+            <div class="day0 day-container">
+                <div class="day-title day0-title"></div>
+                <div class="icon day0-icon"></div>
+                <div class="day-temp day0-temp"></div>
+                <div class="day-desc day0-desc"></div>
+            </div>
+            <div class="day1 day-container">
+                <div class="day-title day1-title"></div>
+                <div class="icon day1-icon"></div>
+                <div class="day-temp day1-temp"></div>
+                <div class="day-desc day1-desc"></div>
+            </div>
+            <div class="day2 day-container">
+                <div class="day-title day2-title"></div>
+                <div class="icon day2-icon"></div>
+                <div class="day-temp day2-temp"></div>
+                <div class="day-desc day2-desc"></div>
+            </div>
+            <div class="day3 day-container">
+                <div class="day-title day3-title"></div>
+                <div class="icon day3-icon"></div>
+                <div class="day-temp day3-temp"></div>
+                <div class="day-desc day3-desc"></div>
+            </div>
+            <div class="day4 day-container">
+                <div class="day-title day4-title"></div>
+                <div class="icon day4-icon"></div>
+                <div class="day-temp day4-temp"></div>
+                <div class="day-desc day4-desc"></div>
+            </div>
+            <div class="day5 day-container">
+                <div class="day-title day5-title"></div>
+                <div class="icon day5-icon"></div>
+                <div class="day-temp day5-temp"></div>
+                <div class="day-desc day5-desc"></div>
+            </div>
+            <div class="day6 day-container">
+                <div class="day-title day6-title"></div>
+                <div class="icon day6-icon"></div>
+                <div class="day-temp day6-temp"></div>
+                <div class="day-desc day6-desc"></div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        Icons from VisualCrossing & https://github.com/basmilius/weather-icons/tree/dev
+    </footer>
+</body>
+</html>
